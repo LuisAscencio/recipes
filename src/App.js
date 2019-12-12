@@ -38,6 +38,17 @@ function App() {
           </button>
         </div>
       </form>
+      <br />
+      <br />
+      <br />
+      {recipes.map(item => (
+        <Recipe
+          key={item.recipe.calories + 4}
+          title={item.recipe.label}
+          calories={item.recipe.calories}
+          image={item.recipe.image}
+        />
+      ))}
     </div>
   );
 }
