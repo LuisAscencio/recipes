@@ -6,13 +6,16 @@ function App() {
   const APP_ID = `2b747fc4`;
   const APP_KEY = `d4e5d53d398f73289e4ed5fca4d38690	`;
   const [recipes, setRecipes] = useState([]);
+  const [search, setSearch] = useState("");
+  const [query, setQuery] = useState("chicken");
+
   useEffect(() => {
     getRecipes();
-  }, []);
+  }, [query]);
 
   const getRecipes = async () => {
     fetch(
-      `https://api.edamam.com/search?q=chicken&app_id=${APP_ID}&app_key=${APP_KEY}`
+      `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`
     ).then(response => {
       response.json().then(data => {
         setRecipes(data.hits);
@@ -21,20 +24,31 @@ function App() {
     });
   };
 
+  const updateSearch = e => {
+    setSearch(e.target.value);
+  };
+
+  const getSearch = e => {
+    e.preventDefault();
+    setQuery(search);
+  };
+
   return (
     <div className="jumbotron jumbotron-fluid">
       <h1>Recipes</h1>
-      <form>
+      <form onSubmit={getSearch}>
         <div className="form-row">
           <div className="col">
             <input
               type="text"
               className="form-control"
               placeholder="search recipe"
+              onChange={updateSearch}
+              value={search}
             />
           </div>
-          <button type="button" className="btn btn-primary">
-            Submit
+          <button type="submit" className="btn btn-primary">
+            Search
           </button>
         </div>
       </form>
@@ -42,12 +56,15 @@ function App() {
       <br />
       <br />
       {recipes.map(item => (
-        <Recipe
-          key={item.recipe.calories + 4}
-          title={item.recipe.label}
-          calories={item.recipe.calories}
-          image={item.recipe.image}
-        />
+        <div key={item.recipe.calories + 4}>
+          <br />
+          <Recipe
+            title={item.recipe.label}
+            image={item.recipe.image}
+            calories={item.recipe.calories}
+          />
+          <br />
+        </div>
       ))}
     </div>
   );
