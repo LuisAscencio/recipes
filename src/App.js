@@ -68,6 +68,7 @@ function App() {
               image={item.recipe.image}
               calories={item.recipe.calories}
               ingredients={item.recipe.ingredients}
+              website={item.recipe.url}
             />
 
             <br />
