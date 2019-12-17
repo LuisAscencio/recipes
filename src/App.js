@@ -48,7 +48,7 @@ function App() {
               value={search}
             />
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-danger">
             Search
           </button>
         </div>
@@ -63,6 +63,7 @@ function App() {
             title={item.recipe.label}
             image={item.recipe.image}
             calories={item.recipe.calories}
+            ingredients={item.recipe.ingredients}
           />
           <br />
         </div>
