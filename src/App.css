@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+.recipes {
+  margin: 5px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}

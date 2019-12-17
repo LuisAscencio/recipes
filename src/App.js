@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Recipe from "./Recipe";
+import RecipeCard from "./RecipeCard";
 import "./App.css";
 
 function App() {
@@ -35,39 +35,45 @@ function App() {
   };
 
   return (
-    <div className="jumbotron jumbotron-fluid">
-      <h1>Recipes</h1>
-      <form onSubmit={getSearch}>
-        <div className="form-row">
-          <div className="col">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="search recipe"
-              onChange={updateSearch}
-              value={search}
-            />
+    <div>
+      <div className="jumbotron jumbotron-fluid">
+        <h1>Recipes</h1>
+        <form onSubmit={getSearch}>
+          <div className="form-row">
+            <div className="col">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="search recipe"
+                onChange={updateSearch}
+                value={search}
+              />
+            </div>
+            <button type="submit" className="btn btn-danger">
+              Search
+            </button>
           </div>
-          <button type="submit" className="btn btn-danger">
-            Search
-          </button>
-        </div>
-      </form>
+        </form>
+      </div>
       <br />
       <br />
       <br />
-      {recipes.map(item => (
-        <div key={item.recipe.calories + 4}>
-          <br />
-          <Recipe
-            title={item.recipe.label}
-            image={item.recipe.image}
-            calories={item.recipe.calories}
-            ingredients={item.recipe.ingredients}
-          />
-          <br />
-        </div>
-      ))}
+      <div className="recipes">
+        {recipes.map(item => (
+          <div key={item.recipe.calories + 4}>
+            <br />
+
+            <RecipeCard
+              title={item.recipe.label}
+              image={item.recipe.image}
+              calories={item.recipe.calories}
+              ingredients={item.recipe.ingredients}
+            />
+
+            <br />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
