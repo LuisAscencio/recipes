@@ -69,6 +69,7 @@ function App() {
               calories={item.recipe.calories}
               ingredients={item.recipe.ingredients}
               website={item.recipe.url}
+              serves={item.recipe.yield}
             />
 
             <br />

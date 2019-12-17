@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 
-const RecipeCard = ({ title, calories, image, ingredients, website }) => {
+const RecipeCard = ({
+  title,
+  calories,
+  image,
+  ingredients,
+  website,
+  serves
+}) => {
   const [getRecipeButton, setRecipeButton] = useState(false);
 
   const updateRecipeButton = e => {
@@ -13,8 +20,10 @@ const RecipeCard = ({ title, calories, image, ingredients, website }) => {
         <div className="card" style={{ width: "30em" }}>
           <img className="card-img-top" alt="" src={image} />
           <div className="card-body">
-            <h5 className="card-title">{title}</h5>
+            <h3 className="card-title">{title}</h3>
+            <h5 className="card-text">Serves: {serves}</h5>
             <p className="card-text">Calories: {Math.trunc(calories)}</p>
+
             {getRecipeButton ? (
               <ol>
                 {ingredients.map((ingredient, i) => (
@@ -33,7 +42,7 @@ const RecipeCard = ({ title, calories, image, ingredients, website }) => {
                 type="button"
                 className="btn btn-danger"
               >
-                Get Ingredients
+                {getRecipeButton ? "Hide ingredients" : "Show Ingredients"}
               </button>
             </div>
             <div
@@ -41,7 +50,11 @@ const RecipeCard = ({ title, calories, image, ingredients, website }) => {
               role="group"
               aria-label="Second group"
             >
-              <a href={`${website}`} className="btn btn-danger">
+              <a
+                href={`${website}`}
+                target="_b=lank"
+                className="btn btn-danger"
+              >
                 Full Recipe
               </a>
             </div>
