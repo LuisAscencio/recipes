@@ -108,8 +108,26 @@
   justify-content: space-around;
   flex-wrap: wrap;
 }
+.title {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  color: white;
+  font-weight: bold;
+  font-size: 40px;
+}
 
 .pizza {
   position: absolute;
   margin-top: 10px;
+}
+
+.navElements {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  color: #cb444a;
+  margin: 10px;
+  font-size: 20px;
+  font-weight: bold;
 }

@@ -5,10 +5,10 @@ const Home = () => {
     <div>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
-          <FaHamburger size="20px" color="#cb444a" />
+          <FaHamburger size="40px" color="#cb444a" />
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarNav"
@@ -16,33 +16,23 @@ const Home = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">
-                Home <span class="sr-only">(current)</span>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item active">
+              <a className="navElements" href="#">
+                Home <span className="sr-only">(current)</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
+            <li className="nav-item">
+              <a className="navElements" href="#">
                 Features
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
+            <li className="nav-item">
+              <a className="navElements" href="#">
                 Pricing
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link disabled"
-                href="#"
-                tabindex="-1"
-                aria-disabled="true"
-              >
-                Disabled
               </a>
             </li>
           </ul>
@@ -52,11 +42,16 @@ const Home = () => {
       <div className="home">
         <br />
         <br />
+        <br />
+        <br />
+        <br />
+
         <div className="groupButtons">
-          <FaHamburger size="200px" color="white" />
+          <FaHamburger size="250px" color="white" />
         </div>
         <br />
-        <h2 className="groupButtons">Recipes</h2>
+
+        <h2 className="title">Recipes</h2>
         <canvas width={window.innerWidth} height={window.innerHeight} />
       </div>
     </div>
