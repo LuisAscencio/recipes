@@ -42,3 +42,69 @@
   justify-content: space-around;
   flex-wrap: wrap;
 }
+
+.home {
+  width: 100%;
+  height: auto;
+  background-color: #cb444a;
+}
+
+.homeButtons {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: white;
+  color: #cb444a;
+  font-size: 24px;
+  padding: 16px 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.homeButtons:hover {
+  background-color: #cb444a;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.homeButtons2 {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: white;
+  color: #cb444a;
+  font-size: 24px;
+  padding: 16px 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.homeButtons2:hover {
+  background-color: #cb444a;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.groupButtons {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
