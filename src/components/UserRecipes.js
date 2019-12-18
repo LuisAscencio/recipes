@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RecipeCard from "./RecipeCard";
-import "./App.css";
 
-function ApiRecipes() {
+function UserRecipes() {
   const APP_ID = `2b747fc4`;
   const APP_KEY = `d4e5d53d398f73289e4ed5fca4d38690	`;
   const [recipes, setRecipes] = useState([]);
@@ -37,7 +36,7 @@ function ApiRecipes() {
   return (
     <div>
       <div className="jumbotron jumbotron-fluid">
-        <h1>Recipes</h1>
+        <h1 className="titleRed">My Recipes</h1>
         <form onSubmit={getSearch}>
           <div className="form-row">
             <div className="col">
@@ -80,4 +79,4 @@ function ApiRecipes() {
   );
 }
 
-export default ApiRecipes;
+export default UserRecipes;

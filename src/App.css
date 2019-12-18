@@ -117,6 +117,15 @@
   font-size: 40px;
 }
 
+.titleRed {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  color: #cb444a;
+  font-weight: bold;
+  font-size: 40px;
+}
+
 .pizza {
   position: absolute;
   margin-top: 10px;

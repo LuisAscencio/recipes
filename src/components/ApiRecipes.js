@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import RecipeCard from "./RecipeCard";
-import "./App.css";
+import "/Users/luismiguelascencio/Development/RealLife/recipes/src/App.css";
 
-function UserRecipes() {
+function ApiRecipes() {
   const APP_ID = `2b747fc4`;
   const APP_KEY = `d4e5d53d398f73289e4ed5fca4d38690	`;
   const [recipes, setRecipes] = useState([]);
@@ -14,14 +14,14 @@ function UserRecipes() {
   }, [query]);
 
   const getRecipes = async () => {
-    // fetch(
-    //   `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`
-    // ).then(response => {
-    //   response.json().then(data => {
-    //     setRecipes(data.hits);
-    //     console.log(data.hits);
-    //   });
-    // });
+    fetch(
+      `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`
+    ).then(response => {
+      response.json().then(data => {
+        setRecipes(data.hits);
+        console.log(data.hits);
+      });
+    });
   };
 
   const updateSearch = e => {
@@ -37,7 +37,7 @@ function UserRecipes() {
   return (
     <div>
       <div className="jumbotron jumbotron-fluid">
-        <h1>Recipes</h1>
+        <h1 className="titleRed">Recipe Vault</h1>
         <form onSubmit={getSearch}>
           <div className="form-row">
             <div className="col">
@@ -80,4 +80,4 @@ function UserRecipes() {
   );
 }
 
-export default UserRecipes;
+export default ApiRecipes;
