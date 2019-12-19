@@ -1,12 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import { FaHamburger } from "react-icons/fa";
 const NavBar = () => {
   return (
     <div>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-          <FaHamburger size="40px" color="#cb444a" />
-        </a>
+        <Link to="/home">
+          <a class="navbar-brand" href="#">
+            <FaHamburger size="40px" color="#cb444a" />
+          </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -20,21 +24,27 @@ const NavBar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
-            <li className="nav-item active">
-              <a className="navElements" href="#">
-                Home <span className="sr-only">(current)</span>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="navElements" href="#">
-                Features
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="navElements" href="#">
-                Pricing
-              </a>
-            </li>
+            <Link to="/home">
+              <li className="nav-item active">
+                <a className="navElements" href="#">
+                  Home <span className="sr-only">(current)</span>
+                </a>
+              </li>
+            </Link>
+            <Link to="/myrecipes">
+              <li className="nav-item">
+                <a className="navElements" href="#">
+                  My recipe
+                </a>
+              </li>
+            </Link>
+            <Link to="recipevault">
+              <li className="nav-item">
+                <a className="navElements" href="#">
+                  Recipe vault
+                </a>
+              </li>
+            </Link>
           </ul>
         </div>
       </nav>
