@@ -4,51 +4,43 @@ import { Link } from "react-router-dom";
 import { FaHamburger } from "react-icons/fa";
 const NavBar = () => {
   return (
-    <div>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <Link to="/home">
-          <a class="navbar-brand" href="#">
-            <FaHamburger size="40px" color="#cb444a" />
-          </a>
-        </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <Link to="/home">
-              <li className="nav-item active">
-                <a className="navElements" href="#">
-                  Home <span className="sr-only">(current)</span>
-                </a>
-              </li>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <Link className="navbar-brand" to="/home">
+        <FaHamburger size="40px" color="#cb444a" />
+      </Link>
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navMenu"
+        aria-controls="navbar-nav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <div className="collapse navbar-collapse" id="navMenu">
+        <ul className="navbar-nav">
+          <li className="nav-item active">
+            <Link to="/home" className="navElements">
+              New recipe <span className="sr-only">(current)</span>
             </Link>
-            <Link to="/myrecipes">
-              <li className="nav-item">
-                <a className="navElements" href="#">
-                  My recipe
-                </a>
-              </li>
+          </li>
+
+          <li className="nav-item">
+            <Link to="/myrecipes" className="navElements">
+              My recipe
             </Link>
-            <Link to="recipevault">
-              <li className="nav-item">
-                <a className="navElements" href="#">
-                  Recipe vault
-                </a>
-              </li>
+          </li>
+
+          <li className="nav-item">
+            <Link className="navElements" to="recipevault">
+              Recipe vault
             </Link>
-          </ul>
-        </div>
-      </nav>
-    </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
   );
 };
 
