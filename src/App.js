@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import ApiRecipes from "./components/ApiRecipes";
-// import RecipeCard from "./components/RecipeCard";
+import NewRecipe from "./components/NewRecipe";
 import UserRecipes from "./components/UserRecipes";
 import "/Users/luismiguelascencio/Development/RealLife/recipes/src/App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -15,9 +15,9 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/home" exact component={Home} />
+          <Route path="/newrecipe" exact component={NewRecipe} />
           <Route path="/myrecipes" component={UserRecipes} />
           <Route path="/recipeVault" component={ApiRecipes} />
-          <Route path="/newRecipe" exact component={Home} />
         </Switch>
       </div>
     </Router>

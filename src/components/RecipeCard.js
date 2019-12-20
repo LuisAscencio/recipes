@@ -17,7 +17,13 @@ const RecipeCard = ({
   return (
     <div className="row">
       <div className="col-sm-6">
-        <div className="card" style={{ width: "30em" }}>
+        <div
+          className="card"
+          style={{
+            width: "30em",
+            flexBasis: "15em"
+          }}
+        >
           <img className="card-img-top" alt="" src={image} />
           <div className="card-body">
             <h3 className="card-title">{title}</h3>

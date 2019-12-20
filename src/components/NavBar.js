@@ -22,7 +22,7 @@ const NavBar = () => {
       <div className="collapse navbar-collapse" id="navMenu">
         <ul className="navbar-nav">
           <li className="nav-item active">
-            <Link to="/home" className="navElements">
+            <Link to="/newrecipe" className="navElements">
               New recipe <span className="sr-only">(current)</span>
             </Link>
           </li>

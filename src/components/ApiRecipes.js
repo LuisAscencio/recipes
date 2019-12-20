@@ -36,7 +36,7 @@ function ApiRecipes() {
 
   return (
     <div>
-      <div className="jumbotron jumbotron-fluid">
+      <div className="jumbotron bg-danger">
         <h1 className="titleRed">Recipe Vault</h1>
         <form onSubmit={getSearch}>
           <div className="form-row">
@@ -49,7 +49,7 @@ function ApiRecipes() {
                 value={search}
               />
             </div>
-            <button type="submit" className="btn btn-danger">
+            <button type="submit" className="btn btn-outline-light">
               Search
             </button>
           </div>

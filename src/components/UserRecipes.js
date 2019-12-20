@@ -35,7 +35,7 @@ function UserRecipes() {
 
   return (
     <div>
-      <div className="jumbotron jumbotron-fluid">
+      <div className="jumbotron bg-danger  ">
         <h1 className="titleRed">My Recipes</h1>
         <form onSubmit={getSearch}>
           <div className="form-row">
@@ -43,12 +43,12 @@ function UserRecipes() {
               <input
                 type="text"
                 className="form-control"
-                placeholder="search recipe"
+                placeholder="Search recipe"
                 onChange={updateSearch}
                 value={search}
               />
             </div>
-            <button type="submit" className="btn btn-danger">
+            <button type="submit" className="btn btn-outline-light">
               Search
             </button>
           </div>
