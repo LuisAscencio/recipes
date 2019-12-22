@@ -20,7 +20,7 @@ const RecipeCard = ({
         <div
           className="card"
           style={{
-            width: "30em",
+            width: "22em",
             flexBasis: "15em"
           }}
         >
