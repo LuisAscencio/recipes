@@ -1,6 +1,35 @@
-import React from "react";
-
+import React, { useState } from "react";
+import firebase from "../firebase";
 const NewRecipe = () => {
+  const [title, setTitle] = useState("");
+  const [recipeLink, setRecipeLink] = useState("");
+  const [recipeIngredients, setRecipeIngredients] = useState("");
+  const [imageLink, setImageLink] = useState("");
+  const [serves, setServes] = useState(Number);
+  const [vegan, setVegan] = useState(false);
+
+  const storeToDataBase = e => {
+    e.preventDefault();
+    firebase
+      .firestore()
+      .collection("recipes")
+      .add({
+        title,
+        recipeLink,
+        imageLink,
+        serves,
+        vegan,
+        recipeIngredients
+      })
+      .then(() => {
+        setTitle("");
+        setImageLink("");
+        setRecipeIngredients("");
+        setRecipeLink("");
+        setServes(1);
+        setVegan(false);
+      });
+  };
   return (
     <div
       style={{
@@ -11,37 +40,76 @@ const NewRecipe = () => {
     >
       <br />
 
-      <form>
-        <div class="form-row ">
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Recipe title</label>
+      <form onSubmit={storeToDataBase}>
+        <div className="form-row ">
+          <div className="form-group col-md-6">
+            <label htmlFor="recipeTitle">Recipe title</label>
             <input
               placeholder="Al pastor tacos"
-              type="email"
-              class="form-control"
-              id="inputEmail4"
+              type="text"
+              className="form-control"
+              id="recipeTitle"
+              value={title}
+              onChange={e => {
+                setTitle(e.currentTarget.value);
+              }}
             />
           </div>
-          <div class="form-group col-md-6">
-            <label for="inputPassword4">Recipe link</label>
-            <input type="password" class="form-control" id="inputPassword4" />
+          <div className="form-group col-md-6">
+            <label htmlFor="recipeLink">Recipe link</label>
+            <input
+              type="text"
+              placeholder="www.lostacosnumberone.com"
+              className="form-control"
+              id="recipeLink"
+              value={recipeLink}
+              onChange={e => {
+                setRecipeLink(e.currentTarget.value);
+              }}
+            />
           </div>
         </div>
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">Recipe ingredients</label>
+        <div className="form-group">
+          <label htmlFor="recipeIngredients">Recipe ingredients</label>
           <textarea
-            class="form-control"
-            id="exampleFormControlTextarea1"
-            rows="5"
-            placeholder="Enter ingredients separated with a comma"
+            className="form-control"
+            id="recipeIngredients"
+            rows="3"
+            placeholder="Enter one ingredient per row or separated with a comma"
+            value={recipeIngredients}
+            onChange={e => {
+              setRecipeIngredients(e.currentTarget.value);
+            }}
           ></textarea>
         </div>
 
-        <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="inputState">Serves</label>
-            <select id="inputState" class="form-control">
-              <option selected>1</option>
+        <div className="form-row">
+          <div className="form-group col-md-6">
+            <label htmlFor="imagelink">Image link</label>
+            <input
+              type="text"
+              placeholder="www.myimage.com"
+              className="form-control"
+              id="imagelink"
+              value={imageLink}
+              onChange={e => {
+                setImageLink(e.currentTarget.value);
+              }}
+            />
+          </div>
+
+          <div className="form-group col-md-6">
+            <label htmlFor="inputState">Serves</label>
+            <select
+              id="inputState"
+              type="number"
+              className="form-control"
+              value={serves}
+              onChange={e => {
+                setServes(e.currentTarget.value);
+              }}
+            >
+              <option defaultValue>1</option>
               <option>2</option>
               <option>3</option>
               <option>4</option>
@@ -56,10 +124,20 @@ const NewRecipe = () => {
             </select>
           </div>
         </div>
-        <div class="form-group">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck" />
-            <label class="form-check-label" for="gridCheck">
+        <div className="form-group">
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="gridCheck"
+              checked={vegan}
+              value={vegan}
+              onChange={() => {
+                setVegan(!vegan);
+                console.log(vegan);
+              }}
+            />
+            <label className="form-check-label" htmlFor="gridCheck">
               Vegan?
             </label>
           </div>
