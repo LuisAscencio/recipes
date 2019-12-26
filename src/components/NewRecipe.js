@@ -3,7 +3,7 @@ import firebase from "../firebase";
 const NewRecipe = () => {
   const [title, setTitle] = useState("");
   const [recipeLink, setRecipeLink] = useState("");
-  const [recipeIngredients, setRecipeIngredients] = useState("");
+  const [recipeIngredients, setRecipeIngredients] = useState([]);
   const [imageLink, setImageLink] = useState("");
   const [serves, setServes] = useState(Number);
   const [vegan, setVegan] = useState(false);
@@ -19,7 +19,7 @@ const NewRecipe = () => {
         imageLink,
         serves,
         vegan,
-        recipeIngredients
+        recipeIngredients: recipeIngredients.split(/\n/)
       })
       .then(() => {
         setTitle("");
@@ -75,7 +75,7 @@ const NewRecipe = () => {
             className="form-control"
             id="recipeIngredients"
             rows="3"
-            placeholder="Enter one ingredient per row or separated with a comma"
+            placeholder="Enter one ingredient per line"
             value={recipeIngredients}
             onChange={e => {
               setRecipeIngredients(e.currentTarget.value);
@@ -134,7 +134,6 @@ const NewRecipe = () => {
               value={vegan}
               onChange={() => {
                 setVegan(!vegan);
-                console.log(vegan);
               }}
             />
             <label className="form-check-label" htmlFor="gridCheck">

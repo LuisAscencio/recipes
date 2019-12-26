@@ -1,49 +1,55 @@
 import React, { useEffect, useState } from "react";
+import firebase from "../firebase";
 import RecipeCard from "./RecipeCard";
 
-function UserRecipes() {
+function GetRecipes() {
   const [recipes, setRecipes] = useState([]);
-  const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("chicken");
 
   useEffect(() => {
-    getRecipes();
-  }, [query]);
+    firebase
+      .firestore()
+      .collection("recipes")
+      .onSnapshot(snapshot => {
+        // debugger;
+        const newRecipes = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setRecipes(newRecipes);
+      });
+  }, []);
+  return recipes;
+}
 
-  const getRecipes = async () => {
-    // fetch(
-    //   `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`
-    // ).then(response => {
-    //   response.json().then(data => {
-    //     setRecipes(data.hits);
-    //     console.log(data.hits);
-    //   });
-    // });
-  };
+const UserRecipes = () => {
+  const recipes = GetRecipes();
+  // const [recipes, setRecipes] = useState([]);
+  // const [search, setSearch] = useState("");
+  // const [query, setQuery] = useState("chicken");
 
-  const updateSearch = e => {
-    setSearch(e.target.value);
-  };
+  // const getRecipes = () => {};
 
-  const getSearch = e => {
-    e.preventDefault();
-    setQuery(search);
-    setSearch("");
-  };
+  // const updateSearch = e => {
+  //   setSearch(e.target.value);
+  // };
+
+  // const getSearch = e => {
+  //   e.preventDefault();
+  //   setQuery(search);
+  //   setSearch("");
+  // };
 
   return (
     <div>
       <div className="jumbotron bg-danger  ">
         <h1 className="titleRed">My Recipes</h1>
-        <form onSubmit={getSearch}>
+        <form>
           <div className="form-row">
             <div className="col">
               <input
                 type="text"
                 className="form-control"
                 placeholder="Search recipe"
-                onChange={updateSearch}
-                value={search}
               />
             </div>
             <button type="submit" className="btn btn-outline-light">
@@ -57,16 +63,16 @@ function UserRecipes() {
       <br />
       <div className="recipes">
         {recipes.map(item => (
-          <div key={item.recipe.calories + 4}>
+          <div key={item.id}>
             <br />
 
             <RecipeCard
-              title={item.recipe.label}
-              image={item.recipe.image}
-              calories={item.recipe.calories}
-              ingredients={item.recipe.ingredients}
-              website={item.recipe.url}
-              serves={item.recipe.yield}
+              title={item.title}
+              image={item.imageLink}
+              // calories={item.recipe.calories}
+              ingredients={item.recipeIngredients}
+              website={item.recipeLink}
+              serves={item.serves}
             />
 
             <br />
@@ -75,6 +81,6 @@ function UserRecipes() {
       </div>
     </div>
   );
-}
+};
 
 export default UserRecipes;
