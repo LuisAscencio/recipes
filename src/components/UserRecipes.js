@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import RecipeCard from "./RecipeCard";
 
 function UserRecipes() {
-  const APP_ID = `2b747fc4`;
-  const APP_KEY = `d4e5d53d398f73289e4ed5fca4d38690	`;
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("chicken");
