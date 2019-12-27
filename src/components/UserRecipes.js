@@ -2,36 +2,44 @@ import React, { useEffect, useState } from "react";
 import firebase from "../firebase";
 import UserRecipeCard from "./UserRecipeCard";
 
-function GetRecipes() {
+function GetRecipes(search) {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    firebase
+    const unsubscribe = firebase
       .firestore()
       .collection("recipes")
+
       .onSnapshot(snapshot => {
-        // debugger;
         const newRecipes = snapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
         }));
         setRecipes(newRecipes);
       });
-  }, []);
+    return () => unsubscribe();
+  }, [search]);
+
   return recipes;
 }
 
 const UserRecipes = () => {
-  const recipes = GetRecipes();
+  const [search, setSearch] = useState("");
+  const recipes = GetRecipes(search);
+
+  // let filteredRecipes = await recipes.filter(recipe => {
+  //   recipe.title === search;
+  // });
+
   // const [recipes, setRecipes] = useState([]);
   // const [search, setSearch] = useState("");
   // const [query, setQuery] = useState("chicken");
 
   // const getRecipes = () => {};
 
-  // const updateSearch = e => {
-  //   setSearch(e.target.value);
-  // };
+  const updateSearch = e => {
+    setSearch(e.target.value);
+  };
 
   // const getSearch = e => {
   //   e.preventDefault();
@@ -50,6 +58,8 @@ const UserRecipes = () => {
                 type="text"
                 className="form-control"
                 placeholder="Search recipe"
+                value={search}
+                onChange={updateSearch}
               />
             </div>
             <button type="submit" className="btn btn-outline-light">
@@ -69,10 +79,11 @@ const UserRecipes = () => {
             <UserRecipeCard
               title={item.title}
               image={item.imageLink}
-              // calories={item.recipe.calories}
+              calories={item.calories}
               ingredients={item.recipeIngredients}
               website={item.recipeLink}
               serves={item.serves}
+              vegan={item.vegan}
             />
             <br />
           </div>

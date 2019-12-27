@@ -8,7 +8,6 @@ const UserRecipeCard = ({
   website,
   serves
 }) => {
-  debugger;
   const [getRecipeButton, setRecipeButton] = useState(false);
 
   const updateRecipeButton = e => {
@@ -34,7 +33,7 @@ const UserRecipeCard = ({
             {getRecipeButton ? (
               <ol>
                 {ingredients.map((ingredient, i) => (
-                  <li key={ingredients.length / i - 3}>{ingredient}.</li>
+                  <li key={i}>{ingredient}.</li>
                 ))}
               </ol>
             ) : null}

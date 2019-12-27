@@ -7,6 +7,7 @@ const NewRecipe = () => {
   const [imageLink, setImageLink] = useState("");
   const [serves, setServes] = useState(Number);
   const [vegan, setVegan] = useState("No");
+  const [calories, setCalories] = useState("");
 
   const storeToDataBase = e => {
     e.preventDefault();
@@ -21,6 +22,7 @@ const NewRecipe = () => {
             imageLink,
             serves,
             vegan,
+            calories: parseInt(calories),
             recipeIngredients: recipeIngredients.split(/\n/)
           })
           .then(() => {
@@ -30,6 +32,7 @@ const NewRecipe = () => {
             setRecipeLink("");
             setServes(1);
             setVegan(false);
+            setCalories("");
           })
           .then(alert("Recipe saved"));
   };
@@ -98,6 +101,19 @@ const NewRecipe = () => {
               value={imageLink}
               onChange={e => {
                 setImageLink(e.currentTarget.value);
+              }}
+            />
+          </div>
+
+          <div className="form-group col-md-1">
+            <label htmlFor="calories">Calories</label>
+            <input
+              type="number"
+              className="form-control"
+              id="calories"
+              value={calories}
+              onChange={e => {
+                setCalories(e.currentTarget.value);
               }}
             />
           </div>
