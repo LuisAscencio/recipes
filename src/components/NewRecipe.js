@@ -6,30 +6,34 @@ const NewRecipe = () => {
   const [recipeIngredients, setRecipeIngredients] = useState([]);
   const [imageLink, setImageLink] = useState("");
   const [serves, setServes] = useState(Number);
-  const [vegan, setVegan] = useState(false);
+  const [vegan, setVegan] = useState("No");
 
   const storeToDataBase = e => {
     e.preventDefault();
-    firebase
-      .firestore()
-      .collection("recipes")
-      .add({
-        title,
-        recipeLink,
-        imageLink,
-        serves,
-        vegan,
-        recipeIngredients: recipeIngredients.split(/\n/)
-      })
-      .then(() => {
-        setTitle("");
-        setImageLink("");
-        setRecipeIngredients("");
-        setRecipeLink("");
-        setServes(1);
-        setVegan(false);
-      });
+    recipeIngredients.length === 0
+      ? alert("Please add ingredients before saving recipe")
+      : firebase
+          .firestore()
+          .collection("recipes")
+          .add({
+            title,
+            recipeLink,
+            imageLink,
+            serves,
+            vegan,
+            recipeIngredients: recipeIngredients.split(/\n/)
+          })
+          .then(() => {
+            setTitle("");
+            setImageLink("");
+            setRecipeIngredients("");
+            setRecipeLink("");
+            setServes(1);
+            setVegan(false);
+          })
+          .then(alert("Recipe saved"));
   };
+
   return (
     <div
       style={{
@@ -84,7 +88,7 @@ const NewRecipe = () => {
         </div>
 
         <div className="form-row">
-          <div className="form-group col-md-6">
+          <div className="form-group col-md-4">
             <label htmlFor="imagelink">Image link</label>
             <input
               type="text"
@@ -98,8 +102,8 @@ const NewRecipe = () => {
             />
           </div>
 
-          <div className="form-group col-md-6">
-            <label htmlFor="inputState">Serves</label>
+          <div className="form-group col-md-1">
+            <label htmlFor="inputState">Servings</label>
             <select
               id="inputState"
               type="number"
@@ -123,24 +127,23 @@ const NewRecipe = () => {
               <option>12</option>
             </select>
           </div>
-        </div>
-        <div className="form-group">
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="gridCheck"
-              checked={vegan}
+          <div className="form-group col-md-1">
+            <label htmlFor="inputState">Vegan</label>
+            <select
+              id="inputState"
+              type="number"
+              className="form-control"
               value={vegan}
-              onChange={() => {
-                setVegan(!vegan);
+              onChange={e => {
+                setVegan(e.currentTarget.value);
               }}
-            />
-            <label className="form-check-label" htmlFor="gridCheck">
-              Vegan?
-            </label>
+            >
+              <option defaultValue>No</option>
+              <option>Yes</option>
+            </select>
           </div>
         </div>
+
         <button type="submit" className="btn btn-danger">
           Save recipe
         </button>

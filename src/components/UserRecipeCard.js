@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const RecipeCard = ({
+const UserRecipeCard = ({
   title,
   calories,
   image,
@@ -34,7 +34,7 @@ const RecipeCard = ({
             {getRecipeButton ? (
               <ol>
                 {ingredients.map((ingredient, i) => (
-                  <li key={ingredients.length / i - 3}>{ingredient.text}.</li>
+                  <li key={ingredients.length / i - 3}>{ingredient}.</li>
                 ))}
               </ol>
             ) : null}
@@ -72,4 +72,4 @@ const RecipeCard = ({
   );
 };
 
-export default RecipeCard;
+export default UserRecipeCard;

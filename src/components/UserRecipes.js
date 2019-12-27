@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import firebase from "../firebase";
-import RecipeCard from "./RecipeCard";
+import UserRecipeCard from "./UserRecipeCard";
 
 function GetRecipes() {
   const [recipes, setRecipes] = useState([]);
@@ -66,7 +66,7 @@ const UserRecipes = () => {
           <div key={item.id}>
             <br />
 
-            <RecipeCard
+            <UserRecipeCard
               title={item.title}
               image={item.imageLink}
               // calories={item.recipe.calories}
@@ -74,7 +74,6 @@ const UserRecipes = () => {
               website={item.recipeLink}
               serves={item.serves}
             />
-
             <br />
           </div>
         ))}
