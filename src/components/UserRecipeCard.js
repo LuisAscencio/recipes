@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const UserRecipeCard = ({
   title,
@@ -6,7 +7,8 @@ const UserRecipeCard = ({
   image,
   ingredients,
   website,
-  serves
+  serves,
+  id
 }) => {
   const [getRecipeButton, setRecipeButton] = useState(false);
 
@@ -51,19 +53,17 @@ const UserRecipeCard = ({
                 {getRecipeButton ? "Hide ingredients" : "Show Ingredients"}
               </button>
             </div>
-            <div
-              className="btn-group mr-2"
-              role="group"
-              aria-label="Second group"
-            >
-              <a
-                href={`${website}`}
-                target="_b=lank"
-                className="btn btn-danger"
+            <Link to={`/myrecipes/${id}`}>
+              <div
+                className="btn-group mr-2"
+                role="group"
+                aria-label="Second group"
               >
-                Directions
-              </a>
-            </div>
+                <button type="button" className="btn btn-danger">
+                  Directions
+                </button>
+              </div>
+            </Link>
           </div>
         </div>
       </div>

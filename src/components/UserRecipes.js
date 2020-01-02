@@ -6,20 +6,6 @@ const UserRecipes = () => {
   const [search, setSearch] = useState("");
   const [recipes, setRecipes] = useState([]);
 
-  // useEffect(() => {
-  //   firebase
-  //     .firestore()
-  //     .collection("recipes")
-
-  //     .onSnapshot(snapshot => {
-  //       const newRecipes = snapshot.docs.map(doc => ({
-  //         id: doc.id,
-  //         ...doc.data()
-  //       }));
-  //       setRecipes(newRecipes);
-  //     });
-  // }, []);
-
   useEffect(() => {
     firebase
       .firestore()
@@ -98,6 +84,7 @@ const UserRecipes = () => {
             <br />
 
             <UserRecipeCard
+              id={item.id}
               title={item.title}
               image={item.imageLink}
               calories={item.calories}

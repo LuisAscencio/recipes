@@ -135,9 +135,9 @@ const NewRecipe = () => {
           </div>
 
           <div className="form-group col-md-1">
-            <label htmlFor="inputState">Servings</label>
+            <label htmlFor="servings">Servings</label>
             <select
-              id="inputState"
+              id="servings"
               type="number"
               className="form-control"
               value={serves}
@@ -160,10 +160,9 @@ const NewRecipe = () => {
             </select>
           </div>
           <div className="form-group col-md-1">
-            <label htmlFor="inputState">Vegan</label>
+            <label htmlFor="vegan">Vegan</label>
             <select
-              id="inputState"
-              type="number"
+              id="vegan"
               className="form-control"
               value={vegan}
               onChange={e => {

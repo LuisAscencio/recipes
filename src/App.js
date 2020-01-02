@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import ApiRecipes from "./components/ApiRecipes";
 import NewRecipe from "./components/NewRecipe";
 import UserRecipes from "./components/UserRecipes";
+import UserRecipeCardDetail from "./UserRecipeCardDetail";
 import "/Users/luismiguelascencio/Development/RealLife/recipes/src/App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -17,8 +18,9 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/home" exact component={Home} />
           <Route path="/newrecipe" exact component={NewRecipe} />
-          <Route path="/myrecipes" component={UserRecipes} />
+          <Route path="/myrecipes" exact component={UserRecipes} />
           <Route path="/recipeVault" component={ApiRecipes} />
+          <Route path="/myrecipes/:id" component={UserRecipeCardDetail} />
         </Switch>
       </div>
     </Router>
