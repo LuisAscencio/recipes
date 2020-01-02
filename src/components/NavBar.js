@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { FaHamburger } from "react-icons/fa";
 const NavBar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light">
       <Link className="navbar-brand" to="/home">
         <FaHamburger size="40px" color="#cb444a" />
       </Link>

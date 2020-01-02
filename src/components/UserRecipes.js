@@ -39,8 +39,6 @@ const UserRecipes = () => {
             )
           );
         }
-
-        console.log(recipes);
       });
   }, [search]);
 
@@ -85,9 +83,9 @@ const UserRecipes = () => {
                 onChange={updateSearch}
               />
             </div>
-            <button type="submit" className="btn btn-outline-light">
+            {/* <button type="submit" className="btn btn-outline-light">
               Search
-            </button>
+            </button> */}
           </div>
         </form>
       </div>
