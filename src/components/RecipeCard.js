@@ -8,7 +8,6 @@ const RecipeCard = ({
   website,
   serves
 }) => {
-  debugger;
   const [getRecipeButton, setRecipeButton] = useState(false);
 
   const updateRecipeButton = e => {

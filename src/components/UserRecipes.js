@@ -2,34 +2,53 @@ import React, { useEffect, useState } from "react";
 import firebase from "../firebase";
 import UserRecipeCard from "./UserRecipeCard";
 
-function GetRecipes(search) {
+const UserRecipes = () => {
+  const [search, setSearch] = useState("");
   const [recipes, setRecipes] = useState([]);
 
+  // useEffect(() => {
+  //   firebase
+  //     .firestore()
+  //     .collection("recipes")
+
+  //     .onSnapshot(snapshot => {
+  //       const newRecipes = snapshot.docs.map(doc => ({
+  //         id: doc.id,
+  //         ...doc.data()
+  //       }));
+  //       setRecipes(newRecipes);
+  //     });
+  // }, []);
+
   useEffect(() => {
-    const unsubscribe = firebase
+    firebase
       .firestore()
       .collection("recipes")
-
-      .onSnapshot(snapshot => {
+      .get()
+      .then(snapshot => {
         const newRecipes = snapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
         }));
-        setRecipes(newRecipes);
+        if (search === "") {
+          setRecipes(newRecipes);
+        } else {
+          setRecipes(newRecipes.filter(recipe => recipe.title === search));
+        }
+
+        console.log(recipes);
       });
-    return () => unsubscribe();
   }, [search]);
 
-  return recipes;
-}
+  // async function filteredRecipes(recipes) {
+  //   let filteredRecipes = await recipes;
+  //   console.log(recipes);
 
-const UserRecipes = () => {
-  const [search, setSearch] = useState("");
-  const recipes = GetRecipes(search);
-
-  // let filteredRecipes = await recipes.filter(recipe => {
-  //   recipe.title === search;
-  // });
+  //   // recipes.filter(recipe => {
+  //   //   recipe.title === search;
+  //   // });
+  // }
+  // filteredRecipes(recipes);
 
   // const [recipes, setRecipes] = useState([]);
   // const [search, setSearch] = useState("");
