@@ -8,6 +8,7 @@ const NewRecipe = () => {
   const [serves, setServes] = useState(Number);
   const [vegan, setVegan] = useState("No");
   const [calories, setCalories] = useState("");
+  const [directions, setDirections] = useState("");
 
   const storeToDataBase = e => {
     e.preventDefault();
@@ -22,6 +23,7 @@ const NewRecipe = () => {
             imageLink,
             serves,
             vegan,
+            directions,
             calories: parseInt(calories),
             recipeIngredients: recipeIngredients.split(/\n/)
           })
@@ -33,6 +35,7 @@ const NewRecipe = () => {
             setServes(1);
             setVegan(false);
             setCalories("");
+            setDirections("");
           })
           .then(alert("Recipe saved"));
   };
@@ -77,15 +80,28 @@ const NewRecipe = () => {
           </div>
         </div>
         <div className="form-group">
-          <label htmlFor="recipeIngredients">Recipe ingredients</label>
+          <label htmlFor="recipeDirections">Recipe ingredients</label>
           <textarea
             className="form-control"
-            id="recipeIngredients"
-            rows="3"
+            id="recipeDirections"
+            rows="5"
             placeholder="Enter one ingredient per line"
             value={recipeIngredients}
             onChange={e => {
               setRecipeIngredients(e.currentTarget.value);
+            }}
+          ></textarea>
+        </div>
+        <div className="form-group">
+          <label htmlFor="recipeIngredients">Directions</label>
+          <textarea
+            className="form-control"
+            id="recipeIngredients"
+            rows="3"
+            placeholder="Enter instructions"
+            value={directions}
+            onChange={e => {
+              setDirections(e.currentTarget.value);
             }}
           ></textarea>
         </div>

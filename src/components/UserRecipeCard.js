@@ -61,7 +61,7 @@ const UserRecipeCard = ({
                 target="_b=lank"
                 className="btn btn-danger"
               >
-                Full Recipe
+                Directions
               </a>
             </div>
           </div>
