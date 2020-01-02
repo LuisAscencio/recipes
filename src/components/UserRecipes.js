@@ -33,7 +33,11 @@ const UserRecipes = () => {
         if (search === "") {
           setRecipes(newRecipes);
         } else {
-          setRecipes(newRecipes.filter(recipe => recipe.title === search));
+          setRecipes(
+            newRecipes.filter(recipe =>
+              recipe.title.toLowerCase().includes(search)
+            )
+          );
         }
 
         console.log(recipes);
