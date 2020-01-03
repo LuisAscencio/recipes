@@ -8,6 +8,7 @@ const UserRecipeCard = ({
   ingredients,
   website,
   serves,
+  directions,
   id
 }) => {
   const [getRecipeButton, setRecipeButton] = useState(false);
@@ -53,7 +54,21 @@ const UserRecipeCard = ({
                 {getRecipeButton ? "Hide ingredients" : "Show Ingredients"}
               </button>
             </div>
-            <Link to={`/myrecipes/${id}`}>
+            <Link
+              to={{
+                pathname: `/myrecipes/${id}`,
+                state: {
+                  title,
+                  calories,
+                  image,
+                  ingredients,
+                  website,
+                  serves,
+                  directions,
+                  id
+                }
+              }}
+            >
               <div
                 className="btn-group mr-2"
                 role="group"

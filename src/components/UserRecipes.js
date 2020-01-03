@@ -92,6 +92,7 @@ const UserRecipes = () => {
               website={item.recipeLink}
               serves={item.serves}
               vegan={item.vegan}
+              directions={item.directions}
             />
             <br />
           </div>
