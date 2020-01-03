@@ -5,11 +5,12 @@ export default function UserRecipeCardDetail({ location }) {
   console.log(location.state.directions);
   return (
     <div>
-      <div className="card mb-3">
+      <div className="card mb-1">
         <img src={location.state.image} className="card-img-top" alt="..." />
         <div className="card-body">
-          <h5 className="card-title">{location.state.title}</h5>
-          <p className="card-text">Directions: {location.state.directions}</p>
+          <h3 className="card-title">{location.state.title}</h3>
+          <h5 className="card-title">Directions:</h5>
+          <p className="card-text"> {location.state.directions}</p>
           <p className="card-text">
             <small className="text-muted">
               Calories: {location.state.calories}

@@ -8,12 +8,12 @@ const NewRecipe = () => {
   const [serves, setServes] = useState(Number);
   const [vegan, setVegan] = useState("No");
   const [calories, setCalories] = useState("");
-  const [directions, setDirections] = useState("");
+  const [directions, setDirections] = useState([]);
 
   const storeToDataBase = e => {
     e.preventDefault();
-    recipeIngredients.length === 0
-      ? alert("Please add ingredients before saving recipe")
+    recipeIngredients.length === 0 || directions.length === 0
+      ? alert("Please add ingredients and directions before saving recipe")
       : firebase
           .firestore()
           .collection("recipes")
@@ -21,16 +21,17 @@ const NewRecipe = () => {
             title,
             recipeLink,
             imageLink,
-            serves,
+            serves: serves === 0 ? "???" : serves,
             vegan,
-            directions,
-            calories: parseInt(calories),
+            directions: directions.split(/\n/),
+            calories: calories ? parseInt(calories) : "???",
             recipeIngredients: recipeIngredients.split(/\n/)
           })
           .then(() => {
             setTitle("");
             setImageLink("");
             setRecipeIngredients("");
+            setDirections("");
             setRecipeLink("");
             setServes(1);
             setVegan(false);
@@ -97,8 +98,8 @@ const NewRecipe = () => {
           <textarea
             className="form-control"
             id="recipeIngredients"
-            rows="3"
-            placeholder="Enter instructions"
+            rows="5"
+            placeholder="Enter one instruction per line"
             value={directions}
             onChange={e => {
               setDirections(e.currentTarget.value);
@@ -145,7 +146,8 @@ const NewRecipe = () => {
                 setServes(e.currentTarget.value);
               }}
             >
-              <option defaultValue>1</option>
+              <option defaultValue>0</option>
+              <option>1</option>
               <option>2</option>
               <option>3</option>
               <option>4</option>

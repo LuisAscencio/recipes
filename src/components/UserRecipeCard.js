@@ -31,7 +31,9 @@ const UserRecipeCard = ({
           <div className="card-body">
             <h3 className="card-title">{title}</h3>
             <h5 className="card-text">Serves: {serves}</h5>
-            <p className="card-text">Calories: {Math.trunc(calories)}</p>
+            <p className="card-text">
+              Calories: {calories === "???" ? "???" : Math.trunc(calories)}
+            </p>
 
             {getRecipeButton ? (
               <ol>
