@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import firebase from "../firebase";
+import storage from "../firebase";
+
 const NewRecipe = () => {
   const [title, setTitle] = useState("");
   const [recipeLink, setRecipeLink] = useState("");
@@ -9,6 +11,8 @@ const NewRecipe = () => {
   const [vegan, setVegan] = useState("No");
   const [calories, setCalories] = useState("");
   const [directions, setDirections] = useState([]);
+  const [file, setFile] = useState("");
+  const [fileName, setFileName] = useState("Choose file");
 
   const storeToDataBase = e => {
     e.preventDefault();
@@ -39,6 +43,27 @@ const NewRecipe = () => {
             setDirections("");
           })
           .then(alert("Recipe saved"));
+  };
+
+  const fileUpload = () => {
+    const uploadTask = storage.ref(`images/${fileName}`).put(file);
+    uploadTask.on(
+      "state_changed",
+      snapshot => {},
+      error => {
+        console.log(error);
+      },
+
+      () => {
+        storage
+          .ref("images")
+          .child(fileName)
+          .getDownloadURL()
+          .then(url => {
+            console.log(url);
+          });
+      }
+    );
   };
 
   return (
@@ -121,6 +146,31 @@ const NewRecipe = () => {
               }}
             />
           </div>
+          <div className="form-group col-md-5">
+            <label htmlFor="browseImage">Browse image</label>
+            <div className="input-group mb-3">
+              {/* <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">
+                  Upload
+                </span>
+              </div> */}
+              <div className="custom-file">
+                <input
+                  type="file"
+                  className="custom-file-input"
+                  id="inputGroupFile01"
+                  aria-describedby="inputGroupFileAddon01"
+                  onChange={e => {
+                    setFile(e.target.files[0]);
+                    setFileName(e.target.files[0].name);
+                  }}
+                />
+                <label className="custom-file-label" htmlFor="inputGroupFile01">
+                  {fileName}
+                </label>
+              </div>
+            </div>
+          </div>
 
           <div className="form-group col-md-1">
             <label htmlFor="calories">Calories</label>
@@ -146,7 +196,7 @@ const NewRecipe = () => {
                 setServes(e.currentTarget.value);
               }}
             >
-              <option defaultValue>0</option>
+              <option defaultValue></option>
               <option>1</option>
               <option>2</option>
               <option>3</option>
