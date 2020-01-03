@@ -36,11 +36,11 @@ const UserRecipeCard = ({
             </p>
 
             {getRecipeButton ? (
-              <ol>
+              <ul>
                 {ingredients.map((ingredient, i) => (
                   <li key={i}>{ingredient}.</li>
                 ))}
-              </ol>
+              </ul>
             ) : null}
 
             <div

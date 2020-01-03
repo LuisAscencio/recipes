@@ -10,7 +10,21 @@ export default function UserRecipeCardDetail({ location }) {
         <div className="card-body">
           <h3 className="card-title">{location.state.title}</h3>
           <h5 className="card-title">Directions:</h5>
-          <p className="card-text"> {location.state.directions}</p>
+
+          <ol className="card-text">
+            {location.state.directions.map((direction, i) => (
+              <li key={i}>{direction}.</li>
+            ))}
+          </ol>
+          <br />
+          <h6 className="card-title">Ingredients:</h6>
+
+          <ul className="card-text">
+            {location.state.ingredients.map((ingredient, i) => (
+              <li key={i}>{ingredient}.</li>
+            ))}
+          </ul>
+
           <p className="card-text">
             <small className="text-muted">
               Calories: {location.state.calories}
