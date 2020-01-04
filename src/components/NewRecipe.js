@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import firebase from "../firebase";
-import storage from "../firebase";
 
 const NewRecipe = () => {
   const [title, setTitle] = useState("");
@@ -18,7 +17,8 @@ const NewRecipe = () => {
     e.preventDefault();
     recipeIngredients.length === 0 || directions.length === 0
       ? alert("Please add ingredients and directions before saving recipe")
-      : firebase
+      : file === ""
+      ? firebase
           .firestore()
           .collection("recipes")
           .add({
@@ -42,29 +42,97 @@ const NewRecipe = () => {
             setCalories("");
             setDirections("");
           })
-          .then(alert("Recipe saved"));
-  };
 
-  const fileUpload = () => {
-    const uploadTask = storage.ref(`images/${fileName}`).put(file);
-    uploadTask.on(
-      "state_changed",
-      snapshot => {},
-      error => {
-        console.log(error);
-      },
-
-      () => {
-        storage
-          .ref("images")
-          .child(fileName)
-          .getDownloadURL()
+          .then(alert("Recipe saved"))
+      : firebase
+          .storage()
+          .ref(`images/${fileName}`)
+          .put(file)
+          .then(uploadTaskSnapshot => {
+            return uploadTaskSnapshot.ref.getDownloadURL();
+          })
           .then(url => {
             console.log(url);
+            firebase
+              .firestore()
+              .collection("recipes")
+              .add({
+                url,
+                title,
+                recipeLink,
+                imageLink,
+                serves: serves === 0 ? "???" : serves,
+                vegan,
+                directions: directions.split(/\n/),
+                calories: calories ? parseInt(calories) : "???",
+                recipeIngredients: recipeIngredients.split(/\n/)
+              })
+              .then(() => {
+                setTitle("");
+                setImageLink("");
+                setFileName("Choose file");
+                setRecipeIngredients("");
+                setDirections("");
+                setRecipeLink("");
+                setServes(1);
+                setVegan(false);
+                setCalories("");
+                setDirections("");
+              })
+              .then(alert("Recipe saved"));
           });
-      }
-    );
   };
+
+  // const dataUpload = () => {
+  //   firebase
+  //     .firestore()
+  //     .collection("recipes")
+  //     .add({
+  //       title,
+  //       recipeLink,
+  //       imageLink,
+  //       serves: serves === 0 ? "???" : serves,
+  //       vegan,
+  //       directions: directions.split(/\n/),
+  //       calories: calories ? parseInt(calories) : "???",
+  //       recipeIngredients: recipeIngredients.split(/\n/)
+  //     })
+  //     .then(() => {
+  //       setTitle("");
+  //       setImageLink("");
+  //       setRecipeIngredients("");
+  //       setDirections("");
+  //       setRecipeLink("");
+  //       setServes(1);
+  //       setVegan(false);
+  //       setCalories("");
+  //       setDirections("");
+  //     })
+  //     .then(alert("Recipe saved"));
+  // };
+
+  // const fileUpload = () => {
+  //   storage
+  //     .ref(`images/${fileName}`)
+  //     .put(file)
+  //     .on(
+  //       "state_changed",
+  //       snapshot => {},
+  //       error => {
+  //         console.log(error);
+  //       },
+
+  //       () => {
+  //         storage
+  //           .ref("images")
+  //           .child(fileName)
+  //           .getDownloadURL()
+  //           .then(url => {
+  //             console.log(url);
+  //           });
+  //       }
+  //     );
+  // };
 
   return (
     <div
