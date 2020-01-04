@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const UserRecipeCard = ({
@@ -12,6 +12,20 @@ const UserRecipeCard = ({
   id
 }) => {
   const [getRecipeButton, setRecipeButton] = useState(false);
+  const [updatedImage, setUpdatedImage] = useState("");
+
+  useEffect(() => {
+    checkImage();
+  }, []);
+
+  const checkImage = () => {
+    if (image === "") {
+      setUpdatedImage(
+        "https://www.incimages.com/uploaded_files/image/970x450/getty_855098134_353411.jpg"
+      );
+    } else {
+    }
+  };
 
   const updateRecipeButton = e => {
     setRecipeButton(!getRecipeButton);
@@ -27,7 +41,11 @@ const UserRecipeCard = ({
             flexBasis: "15em"
           }}
         >
-          <img className="card-img-top" alt="" src={image} />
+          <img
+            className="card-img-top"
+            alt=""
+            src={image ? image : updatedImage}
+          />
           <div className="card-body">
             <h3 className="card-title">{title}</h3>
             <h5 className="card-text">Serves: {serves}</h5>
@@ -62,7 +80,7 @@ const UserRecipeCard = ({
                 state: {
                   title,
                   calories,
-                  image,
+                  image: updatedImage,
                   ingredients,
                   website,
                   serves,
