@@ -14,17 +14,26 @@ const NewRecipe = () => {
   const [directions, setDirections] = useState([]);
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("Choose file");
+  const [modalText, setModalText] = useState(
+    "Please add ingredients and directions before saving recipe"
+  );
 
   // Modal::
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleModalShow = () => setShow(true);
+  const handleModalShow = text => {
+    setModalText(text);
+    setShow(true);
+  };
+
   //////
 
   const storeToDataBase = e => {
     e.preventDefault();
     recipeIngredients.length === 0 || directions.length === 0
-      ? handleModalShow()
+      ? handleModalShow(
+          "Please add ingredients and directions before saving recipe"
+        )
       : file === ""
       ? dataUpload()
       : fileUpload();
@@ -38,10 +47,10 @@ const NewRecipe = () => {
         title,
         recipeLink,
         imageLink,
-        serves: serves === 0 ? "???" : serves,
+        serves: serves === 0 ? "No info" : serves,
         vegan,
         directions: directions.split(/\n/),
-        calories: calories ? parseInt(calories) : "???",
+        calories: calories ? parseInt(calories) : "No info",
         recipeIngredients: recipeIngredients.split(/\n/)
       })
       .then(() => {
@@ -56,7 +65,7 @@ const NewRecipe = () => {
         setDirections("");
       })
 
-      .then(alert("Recipe saved"));
+      .then(handleModalShow("Recipe saved!"));
   };
 
   const fileUpload = () => {
@@ -75,10 +84,10 @@ const NewRecipe = () => {
             title,
             recipeLink,
             imageLink: url ? url : imageLink,
-            serves: serves === 0 ? "???" : serves,
+            serves: serves === 0 ? "No Info" : serves,
             vegan,
             directions: directions.split(/\n/),
-            calories: calories ? parseInt(calories) : "???",
+            calories: calories ? parseInt(calories) : "No info",
             recipeIngredients: recipeIngredients.split(/\n/)
           })
           .then(() => {
@@ -94,7 +103,7 @@ const NewRecipe = () => {
             setCalories("");
             setDirections("");
           })
-          .then(alert("Recipe saved"));
+          .then(handleModalShow("Recipe saved!"));
       });
   };
 
@@ -112,9 +121,7 @@ const NewRecipe = () => {
             <FaHamburger size="40px" color="#cb444a" />
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          Please add ingredients and directions before saving recipe
-        </Modal.Body>
+        <Modal.Body>{modalText}</Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={handleClose}>
             OK

@@ -8,6 +8,7 @@ const UserRecipeCard = ({
   ingredients,
   website,
   serves,
+  vegan,
   directions,
   id
 }) => {
@@ -52,8 +53,10 @@ const UserRecipeCard = ({
             <h3 className="card-title">{title}</h3>
             <h5 className="card-text">Serves: {serves}</h5>
             <p className="card-text">
-              Calories: {calories === "???" ? "???" : Math.trunc(calories)}
+              Calories:{" "}
+              {calories === "No info" ? "No info" : Math.trunc(calories)}
             </p>
+            <p className="card-text">Vegan: {vegan ? vegan : "No"}</p>
 
             {getRecipeButton ? (
               <ul>
