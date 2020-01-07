@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import firebase from "../firebase";
-import Modal from "./Modal";
+import { FaHamburger } from "react-icons/fa";
 
+import { Modal, Button } from "react-bootstrap";
 const NewRecipe = () => {
   const [title, setTitle] = useState("");
   const [recipeLink, setRecipeLink] = useState("");
@@ -14,10 +15,16 @@ const NewRecipe = () => {
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("Choose file");
 
+  // Modal::
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleModalShow = () => setShow(true);
+  //////
+
   const storeToDataBase = e => {
     e.preventDefault();
     recipeIngredients.length === 0 || directions.length === 0
-      ? alert("Please add ingredients and directions before saving recipe")
+      ? handleModalShow()
       : file === ""
       ? dataUpload()
       : fileUpload();
@@ -99,6 +106,21 @@ const NewRecipe = () => {
         marginRight: "10px"
       }}
     >
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            <FaHamburger size="40px" color="#cb444a" />
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Please add ingredients and directions before saving recipe
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleClose}>
+            OK
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <br />
 
       <form onSubmit={storeToDataBase}>
@@ -131,7 +153,7 @@ const NewRecipe = () => {
           </div>
         </div>
         <div className="form-group">
-          <label htmlFor="recipeDirections">Recipe ingredients</label>
+          <label htmlFor="recipeDirections">Ingredients</label>
           <textarea
             className="form-control"
             id="recipeDirections"
