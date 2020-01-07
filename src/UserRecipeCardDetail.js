@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function UserRecipeCardDetail({ location }) {
-  console.log(location.state.directions);
+  console.log(location.state);
   return (
     <div>
       <div className="card mb-1">

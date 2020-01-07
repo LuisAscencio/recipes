@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import firebase from "../firebase";
+import Modal from "./Modal";
 
 const NewRecipe = () => {
   const [title, setTitle] = useState("");
@@ -77,6 +78,7 @@ const NewRecipe = () => {
             setTitle("");
             setImageLink("");
             setFileName("Choose file");
+            setFile("");
             setRecipeIngredients("");
             setDirections("");
             setRecipeLink("");

@@ -19,11 +19,13 @@ const UserRecipeCard = ({
   }, []);
 
   const checkImage = () => {
+    console.log(image);
     if (image === "") {
       setUpdatedImage(
         "https://www.incimages.com/uploaded_files/image/970x450/getty_855098134_353411.jpg"
       );
     } else {
+      setUpdatedImage(image);
     }
   };
 
