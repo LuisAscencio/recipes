@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const UserRecipeCard = ({
+  fileName,
   title,
   calories,
   image,
@@ -20,7 +21,6 @@ const UserRecipeCard = ({
   }, []);
 
   const checkImage = () => {
-    console.log(image);
     if (image === "") {
       setUpdatedImage(
         "https://www.incimages.com/uploaded_files/image/970x450/getty_855098134_353411.jpg"
@@ -83,6 +83,7 @@ const UserRecipeCard = ({
               to={{
                 pathname: `/myrecipes/${id}`,
                 state: {
+                  fileName,
                   title,
                   calories,
                   image: updatedImage,

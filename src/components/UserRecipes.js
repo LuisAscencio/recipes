@@ -84,6 +84,7 @@ const UserRecipes = () => {
             <br />
 
             <UserRecipeCard
+              fileName={item.fileName}
               id={item.id}
               title={item.title}
               image={item.imageLink}

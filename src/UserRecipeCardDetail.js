@@ -1,10 +1,70 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import firebase from "./firebase";
+import { FaHamburger } from "react-icons/fa";
+import { Modal, Button } from "react-bootstrap";
 
 export default function UserRecipeCardDetail({ location }) {
-  console.log(location.state);
+  /////Modal///////
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleModalShow = () => {
+    setShow(true);
+  };
+  ////////
+
+  //// Delete item///////
+
+  const deleteDocument = () => {
+    firebase
+      .firestore()
+      .collection("recipes")
+      .doc(location.state.id)
+      .delete()
+      .then(() => {});
+  };
+
+  async function deletePhoto() {
+    if (location.state.fileName === "Choose file") {
+      return null;
+    } else {
+      var picToDelete = firebase
+        .storage()
+        .ref(`images/${location.state.fileName}`);
+      picToDelete.delete().then(() => {
+        console.log("pic removed");
+      });
+    }
+  }
+
+  ////////
+
+  function goBack() {
+    window.history.back();
+  }
+
+  /////Function for removing pic, data and go to my recipe////
+  const deleteFileAndBack = () => {
+    deletePhoto()
+      .then(deleteDocument())
+      .then(handleClose())
+      .then(goBack());
+  };
+
   return (
     <div>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            <FaHamburger size="40px" color="#cb444a" />
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={deleteFileAndBack}>
+            Yes
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <div className="card mb-1">
         <img src={location.state.image} className="card-img-top" alt="..." />
         <div className="card-body">
@@ -34,6 +94,13 @@ export default function UserRecipeCardDetail({ location }) {
               Serves: {location.state.serves}
             </small>
           </p>
+          <button
+            onClick={handleModalShow}
+            type="button"
+            className="btn btn-danger"
+          >
+            Delete recipe
+          </button>
         </div>
       </div>
     </div>
