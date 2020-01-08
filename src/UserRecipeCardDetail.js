@@ -42,8 +42,8 @@ export default function UserRecipeCardDetail({ location }) {
   /////Function for removing pic, data and go to my recipe////
   const deleteFileAndBack = () => {
     deletePhoto()
-      .then(deleteDocument())
-      .then(handleClose());
+      .then(handleClose())
+      .then(deleteDocument());
   };
 
   return (
@@ -56,7 +56,7 @@ export default function UserRecipeCardDetail({ location }) {
         </Modal.Header>
         <Modal.Body>Are you sure?</Modal.Body>
         <Modal.Footer>
-          <Link to={{ patname: "/myrecipes" }}>
+          <Link to={{ pathname: "/myrecipes" }}>
             <Button variant="danger" onClick={deleteFileAndBack}>
               Yes
             </Button>

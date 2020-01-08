@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import firebase from "../firebase";
 import { FaHamburger } from "react-icons/fa";
 import { Modal, Button } from "react-bootstrap";
+
 const NewRecipe = () => {
   const [title, setTitle] = useState("");
   const [recipeLink, setRecipeLink] = useState("");
