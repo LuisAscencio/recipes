@@ -17,21 +17,55 @@ const NewRecipe = () => {
     "Please add ingredients and directions before saving recipe"
   );
 
+  const [inputColorTitle, setInputColorTitle] = useState("form-control");
+  const [inputColorIngredients, setInputColorIngredients] = useState(
+    "form-control"
+  );
+  const [inputColorDirections, setInputColorDirections] = useState(
+    "form-control"
+  );
   // Modal::
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleModalShow = text => {
     setModalText(text);
     setShow(true);
+    validInputs();
   };
 
   //////
+  const validInputs = () => {
+    if (
+      recipeIngredients.length === 0 &&
+      directions.length === 0 &&
+      title === ""
+    ) {
+      setInputColorTitle("form-control is-invalid");
+      setInputColorIngredients("form-control is-invalid");
+      setInputColorDirections("form-control is-invalid");
+    } else if (recipeIngredients.length === 0 && directions.length === 0) {
+      setInputColorIngredients("form-control is-invalid");
+      setInputColorDirections("form-control is-invalid");
+    } else if (recipeIngredients.length === 0 && title === "") {
+      setInputColorIngredients("form-control is-invalid");
+      setInputColorTitle("form-control is-invalid");
+    } else if (directions.length === 0 && title === "") {
+      setInputColorDirections("form-control is-invalid");
+      setInputColorTitle("form-control is-invalid");
+    } else if (title === "") {
+      setInputColorTitle("form-control is-invalid");
+    } else if (recipeIngredients.length === 0) {
+      setInputColorIngredients("form-control is-invalid");
+    } else if (directions.length === 0) {
+      setInputColorDirections("form-control is-invalid");
+    }
+  };
 
   const storeToDataBase = e => {
     e.preventDefault();
-    recipeIngredients.length === 0 || directions.length === 0
+    recipeIngredients.length === 0 || directions.length === 0 || title === ""
       ? handleModalShow(
-          "Please add ingredients and directions before saving recipe"
+          "Please add a title, ingredients and directions before saving recipe"
         )
       : file === ""
       ? dataUpload()
@@ -55,8 +89,8 @@ const NewRecipe = () => {
       .then(() => {
         setTitle("");
         setImageLink("");
-        setRecipeIngredients("");
-        setDirections("");
+        setRecipeIngredients([]);
+        setDirections([]);
         setRecipeLink("");
         setServes(0);
         setVegan(false);
@@ -95,8 +129,8 @@ const NewRecipe = () => {
             setImageLink("");
             setFileName("Choose file");
             setFile("");
-            setRecipeIngredients("");
-            setDirections("");
+            setRecipeIngredients([]);
+            setDirections([]);
             setRecipeLink("");
             setServes(0);
             setVegan(false);
@@ -137,11 +171,12 @@ const NewRecipe = () => {
             <input
               placeholder="Al pastor tacos"
               type="text"
-              className="form-control"
+              className={inputColorTitle}
               id="recipeTitle"
               value={title}
               onChange={e => {
                 setTitle(e.currentTarget.value);
+                setInputColorTitle("form-control");
               }}
             />
           </div>
@@ -160,28 +195,30 @@ const NewRecipe = () => {
           </div>
         </div>
         <div className="form-group">
-          <label htmlFor="recipeDirections">Ingredients</label>
+          <label htmlFor="recipeIngredients">Ingredients</label>
           <textarea
-            className="form-control"
-            id="recipeDirections"
+            className={inputColorIngredients}
+            id="recipeIngredients"
             rows="5"
             placeholder="Enter one ingredient per line"
             value={recipeIngredients}
             onChange={e => {
               setRecipeIngredients(e.currentTarget.value);
+              setInputColorIngredients("form-control");
             }}
           ></textarea>
         </div>
         <div className="form-group">
-          <label htmlFor="recipeIngredients">Directions</label>
+          <label htmlFor="recipeDirections">Directions</label>
           <textarea
-            className="form-control"
-            id="recipeIngredients"
+            className={inputColorDirections}
+            id="recipeDirections"
             rows="5"
             placeholder="Enter one instruction per line"
             value={directions}
             onChange={e => {
               setDirections(e.currentTarget.value);
+              setInputColorDirections("form-control");
             }}
           ></textarea>
         </div>

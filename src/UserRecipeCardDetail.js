@@ -39,16 +39,11 @@ export default function UserRecipeCardDetail({ location }) {
 
   ////////
 
-  // function goBack() {
-  //   window.history.back();
-  // }
-
   /////Function for removing pic, data and go to my recipe////
   const deleteFileAndBack = () => {
     deletePhoto()
       .then(deleteDocument())
       .then(handleClose());
-    // .then(goBack());
   };
 
   return (
