@@ -1,6 +1,6 @@
 import React from "react";
 import { FaHamburger } from "react-icons/fa";
-import { Shake, ShakeHard } from "reshake";
+import { ShakeHard } from "reshake";
 const Home = () => {
   return (
     <div>
