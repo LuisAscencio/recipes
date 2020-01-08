@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import firebase from "./firebase";
 import { FaHamburger } from "react-icons/fa";
 import { Modal, Button } from "react-bootstrap";
@@ -24,7 +25,7 @@ export default function UserRecipeCardDetail({ location }) {
   };
 
   async function deletePhoto() {
-    if (location.state.fileName === "Choose file") {
+    if (location.state.fileName === undefined) {
       return null;
     } else {
       var picToDelete = firebase
@@ -38,16 +39,16 @@ export default function UserRecipeCardDetail({ location }) {
 
   ////////
 
-  function goBack() {
-    window.history.back();
-  }
+  // function goBack() {
+  //   window.history.back();
+  // }
 
   /////Function for removing pic, data and go to my recipe////
   const deleteFileAndBack = () => {
     deletePhoto()
       .then(deleteDocument())
-      .then(handleClose())
-      .then(goBack());
+      .then(handleClose());
+    // .then(goBack());
   };
 
   return (
@@ -60,9 +61,11 @@ export default function UserRecipeCardDetail({ location }) {
         </Modal.Header>
         <Modal.Body>Are you sure?</Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={deleteFileAndBack}>
-            Yes
-          </Button>
+          <Link to={{ patname: "/myrecipes" }}>
+            <Button variant="danger" onClick={deleteFileAndBack}>
+              Yes
+            </Button>
+          </Link>
         </Modal.Footer>
       </Modal>
       <div className="card mb-1">

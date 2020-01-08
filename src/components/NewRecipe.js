@@ -43,7 +43,6 @@ const NewRecipe = () => {
       .firestore()
       .collection("recipes")
       .add({
-        fileName,
         title,
         recipeLink,
         imageLink,
