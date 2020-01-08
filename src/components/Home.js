@@ -1,5 +1,6 @@
 import React from "react";
 import { FaHamburger } from "react-icons/fa";
+import { Shake, ShakeHard } from "reshake";
 const Home = () => {
   return (
     <div>
@@ -11,11 +12,14 @@ const Home = () => {
         <br />
 
         <div className="groupButtons">
-          <FaHamburger size="250px" color="white" />
+          <ShakeHard>
+            <FaHamburger size="250px" color="white" />
+          </ShakeHard>
         </div>
         <br />
 
-        <h2 className="title">Recipes</h2>
+        <h2 className="title ">Recipes</h2>
+
         <canvas width={window.innerWidth} height={window.innerHeight} />
       </div>
     </div>
