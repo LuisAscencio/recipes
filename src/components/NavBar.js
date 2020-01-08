@@ -22,34 +22,19 @@ const NavBar = () => {
       <div className="collapse navbar-collapse" id="navMenu">
         <ul className="navbar-nav">
           <li className="nav-item active">
-            <Link
-              data-toggle="collapse"
-              data-target="#navMenu"
-              to="/newrecipe"
-              className="navElements"
-            >
+            <Link to="/newrecipe" className="navElements">
               New recipe <span className="sr-only">(current)</span>
             </Link>
           </li>
 
           <li className="nav-item">
-            <Link
-              data-toggle="collapse"
-              data-target="#navMenu"
-              to="/myrecipes"
-              className="navElements"
-            >
+            <Link to="/myrecipes" className="navElements">
               My recipe
             </Link>
           </li>
 
           <li className="nav-item">
-            <Link
-              data-toggle="collapse"
-              data-target="#navMenu"
-              className="navElements"
-              to="recipevault"
-            >
+            <Link to="/recipevault" className="navElements">
               Recipe vault
             </Link>
           </li>
