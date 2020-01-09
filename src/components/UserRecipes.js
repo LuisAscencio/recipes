@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import firebase from "../firebase";
 import UserRecipeCard from "./UserRecipeCard";
+import { withRouter } from "react-router-dom";
 
 const UserRecipes = () => {
   const [search, setSearch] = useState("");
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
+    console.log("use effect triggered");
     firebase
       .firestore()
       .collection("recipes")
@@ -103,4 +105,4 @@ const UserRecipes = () => {
   );
 };
 
-export default UserRecipes;
+export default withRouter(UserRecipes);

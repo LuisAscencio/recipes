@@ -140,3 +140,21 @@
   font-size: 20px;
   font-weight: bold;
 }
+
+.rotate {
+  margin: auto;
+  animation: rotation 1s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+a:hover {
+  color: #cb444a;
+}

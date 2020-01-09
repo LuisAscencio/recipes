@@ -21,29 +21,37 @@ export default function UserRecipeCardDetail({ location }) {
       .collection("recipes")
       .doc(location.state.id)
       .delete()
-      .then(() => {});
+      .then(() => {
+        console.log("doc removed");
+        handleClose();
+        goBack();
+      });
   };
 
   async function deletePhoto() {
     if (location.state.fileName === undefined) {
-      return null;
+      deleteDocument();
     } else {
       var picToDelete = firebase
         .storage()
         .ref(`images/${location.state.fileName}`);
       picToDelete.delete().then(() => {
         console.log("pic removed");
+        deleteDocument();
       });
     }
   }
 
   ////////
 
+  function goBack() {
+    window.history.back();
+  }
+
   /////Function for removing pic, data and go to my recipe////
   const deleteFileAndBack = () => {
-    deletePhoto()
-      .then(handleClose())
-      .then(deleteDocument());
+    console.log("delete");
+    deletePhoto();
   };
 
   return (
@@ -56,11 +64,11 @@ export default function UserRecipeCardDetail({ location }) {
         </Modal.Header>
         <Modal.Body>Are you sure?</Modal.Body>
         <Modal.Footer>
-          <Link to={{ pathname: "/myrecipes" }}>
-            <Button variant="danger" onClick={deleteFileAndBack}>
-              Yes
-            </Button>
-          </Link>
+          {/* <Link to={{ pathname: "/myrecipes" }}> */}
+          <Button variant="danger" onClick={deleteFileAndBack}>
+            Yes
+          </Button>
+          {/* </Link> */}
         </Modal.Footer>
       </Modal>
       <div className="card mb-1">

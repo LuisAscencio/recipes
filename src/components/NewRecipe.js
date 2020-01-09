@@ -35,6 +35,16 @@ const NewRecipe = () => {
   };
 
   //////
+
+  /// Modal 2:::
+  const [show2, setShow2] = useState(false);
+  const handleClose2 = () => setShow2(false);
+  const handleModalShow2 = text => {
+    setModalText(text);
+    setShow2(true);
+  };
+  //////
+
   const validInputs = () => {
     if (
       recipeIngredients.length === 0 &&
@@ -103,6 +113,7 @@ const NewRecipe = () => {
   };
 
   const fileUpload = () => {
+    handleModalShow2("Saving recipe...");
     firebase
       .storage()
       .ref(`images/${fileName}`)
@@ -125,6 +136,7 @@ const NewRecipe = () => {
             calories: calories ? parseInt(calories) : "No info",
             recipeIngredients: recipeIngredients.split(/\n/)
           })
+          .then(handleClose2())
           .then(() => {
             setTitle("");
             setImageLink("");
@@ -150,6 +162,23 @@ const NewRecipe = () => {
         marginRight: "10px"
       }}
     >
+      <Modal show={show2}>
+        <div
+          style={{
+            margin: "auto",
+            color: "#cb444a",
+            fontSize: "24px",
+            fontWeight: "bold"
+          }}
+        >
+          {modalText}
+        </div>
+        <br />
+
+        <FaHamburger className="rotate" size="100px" color="#cb444a" />
+        <Modal.Body></Modal.Body>
+      </Modal>
+
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>
