@@ -13,6 +13,14 @@ export default function UserRecipeCardDetail({ location }) {
   };
   ////////
 
+  /// Modal 2:::
+  const [show2, setShow2] = useState(false);
+  const handleClose2 = () => setShow2(false);
+  const handleModalShow2 = () => {
+    setShow2(true);
+  };
+  //////
+
   //// Delete item///////
 
   const deleteDocument = () => {
@@ -25,10 +33,12 @@ export default function UserRecipeCardDetail({ location }) {
         console.log("doc removed");
         handleClose();
         goBack();
+        handleClose2();
       });
   };
 
   async function deletePhoto() {
+    handleModalShow2();
     if (location.state.fileName === undefined) {
       deleteDocument();
     } else {
@@ -56,6 +66,23 @@ export default function UserRecipeCardDetail({ location }) {
 
   return (
     <div>
+      <Modal show={show2}>
+        <div
+          style={{
+            margin: "auto",
+            color: "#cb444a",
+            fontSize: "24px",
+            fontWeight: "bold"
+          }}
+        >
+          Deleting recipe...
+        </div>
+        <br />
+
+        <FaHamburger className="rotate" size="100px" color="#cb444a" />
+        <Modal.Body></Modal.Body>
+      </Modal>
+
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>
