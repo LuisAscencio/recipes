@@ -31,13 +31,14 @@ export default function UserRecipeCardDetail({ location }) {
       .delete()
       .then(() => {
         console.log("doc removed");
-        handleClose();
+
         goBack();
         handleClose2();
       });
   };
 
   async function deletePhoto() {
+    handleClose();
     handleModalShow2();
     if (location.state.fileName === undefined) {
       deleteDocument();
@@ -99,7 +100,18 @@ export default function UserRecipeCardDetail({ location }) {
         </Modal.Footer>
       </Modal>
       <div className="card mb-1">
-        <img src={location.state.image} className="card-img-top" alt="..." />
+        <img
+          src={location.state.image}
+          className="card-img-top"
+          style={{
+            maxWidth:
+              window.innerWidth > 900
+                ? `${window.innerWidth - window.innerWidth / 2}px`
+                : `${window.innerWidth}`,
+            margin: "auto"
+          }}
+          alt="..."
+        />
         <div className="card-body">
           <h3 className="card-title">{location.state.title}</h3>
           <h5 className="card-title">Directions:</h5>

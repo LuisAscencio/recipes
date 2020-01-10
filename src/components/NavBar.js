@@ -9,7 +9,7 @@ const NavBar = () => {
         <FaHamburger size="40px" color="#cb444a" />
       </Link>
       <button
-        className="navbar-toggler"
+        className=" navbar-toggler "
         type="button"
         data-toggle="collapse"
         data-target="#navMenu"
@@ -19,24 +19,42 @@ const NavBar = () => {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-      <div className="collapse navbar-collapse" id="navMenu">
+      <div className="collapse  navbar-collapse " id="navMenu">
         <ul className="navbar-nav">
           <li className="nav-item active">
-            <Link to="/newrecipe" className="navElements">
-              New recipe <span className="sr-only">(current)</span>
-            </Link>
+            <div
+              className="nav-item active"
+              data-toggle="collapse"
+              data-target="#navMenu"
+            >
+              <Link to="/newrecipe" className="navElements">
+                New recipe <span className="sr-only">(current)</span>
+              </Link>
+            </div>
           </li>
 
           <li className="nav-item">
-            <Link to="/myrecipes" className="navElements">
-              My recipe
-            </Link>
+            <div
+              className="nav-item active"
+              data-toggle="collapse"
+              data-target="#navMenu"
+            >
+              <Link to="/myrecipes" className="navElements">
+                My recipe
+              </Link>
+            </div>
           </li>
 
           <li className="nav-item">
-            <Link to="/recipevault" className="navElements">
-              Recipe vault
-            </Link>
+            <div
+              className="nav-item active"
+              data-toggle="collapse"
+              data-target="#navMenu"
+            >
+              <Link to="/recipevault" className="navElements">
+                Recipe vault
+              </Link>
+            </div>
           </li>
         </ul>
       </div>

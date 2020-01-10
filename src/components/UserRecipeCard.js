@@ -41,6 +41,7 @@ const UserRecipeCard = ({
           className="card"
           style={{
             width: "22em",
+
             flexBasis: "15em"
           }}
         >
