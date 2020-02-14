@@ -103,7 +103,10 @@ function ApiRecipes() {
 
   return (
     <div>
-      <div className="jumbotron bg-danger">
+      <div
+        className="jumbotron bg-danger"
+        style={{ position: "sticky", top: "30px", zIndex: "1" }}
+      >
         <h1 className="titleRed">Recipe Vault</h1>
         <form onSubmit={getSearch}>
           <div className="form-row">
@@ -122,9 +125,7 @@ function ApiRecipes() {
           </div>
         </form>
       </div>
-      <br />
-      <br />
-      <br />
+
       <div className="recipes">
         {recipes.map(item => (
           <div key={item.recipe.calories + 4}>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import firebase from "./firebase";
+import firebase from "../firebase";
 import { FaHamburger } from "react-icons/fa";
 import { Modal, Button } from "react-bootstrap";
 
@@ -118,7 +118,7 @@ export default function UserRecipeCardDetail({ location }) {
 
           <ol className="card-text">
             {location.state.directions.map((direction, i) => (
-              <li key={i}>{direction}.</li>
+              <li key={i}>{direction}</li>
             ))}
           </ol>
           <br />
@@ -126,7 +126,7 @@ export default function UserRecipeCardDetail({ location }) {
 
           <ul className="card-text">
             {location.state.ingredients.map((ingredient, i) => (
-              <li key={i}>{ingredient}.</li>
+              <li key={i}>{ingredient}</li>
             ))}
           </ul>
 

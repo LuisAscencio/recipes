@@ -5,7 +5,7 @@ import Home from "./components/Home";
 import ApiRecipes from "./components/ApiRecipes";
 import NewRecipe from "./components/NewRecipe";
 import UserRecipes from "./components/UserRecipes";
-import UserRecipeCardDetail from "./UserRecipeCardDetail";
+import UserRecipeCardDetail from "./components/UserRecipeCardDetail";
 import "/Users/luismiguelascencio/Development/RealLife/recipes/src/App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 

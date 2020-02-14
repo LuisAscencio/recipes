@@ -58,7 +58,10 @@ const UserRecipes = () => {
 
   return (
     <div>
-      <div className="jumbotron bg-danger  ">
+      <div
+        className="jumbotron bg-danger  "
+        style={{ position: "sticky", top: "30px", zIndex: "1" }}
+      >
         <h1 className="titleRed">My Recipes</h1>
         <form>
           <div className="form-row">
@@ -71,15 +74,10 @@ const UserRecipes = () => {
                 onChange={updateSearch}
               />
             </div>
-            {/* <button type="submit" className="btn btn-outline-light">
-              Search
-            </button> */}
           </div>
         </form>
       </div>
-      <br />
-      <br />
-      <br />
+
       <div className="recipes">
         {recipes.map(item => (
           <div key={item.id}>

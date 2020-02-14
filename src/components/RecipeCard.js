@@ -18,7 +18,7 @@ const RecipeCard = ({
     <div className="row">
       <div className="col-sm-6">
         <div
-          className="card"
+          className="card shadow"
           style={{
             width: "22em",
             flexBasis: "15em"

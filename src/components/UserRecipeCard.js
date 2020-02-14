@@ -38,9 +38,10 @@ const UserRecipeCard = ({
     <div className="row">
       <div className="col-sm-6">
         <div
-          className="card"
+          className="card shadow"
           style={{
             width: "22em",
+           
 
             flexBasis: "15em"
           }}
@@ -62,7 +63,7 @@ const UserRecipeCard = ({
             {getRecipeButton ? (
               <ul>
                 {ingredients.map((ingredient, i) => (
-                  <li key={i}>{ingredient}.</li>
+                  <li key={i}>{ingredient}</li>
                 ))}
               </ul>
             ) : null}
