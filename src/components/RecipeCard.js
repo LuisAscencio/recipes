@@ -31,11 +31,11 @@ const RecipeCard = ({
             <p className="card-text">Calories: {Math.trunc(calories)}</p>
 
             {getRecipeButton ? (
-              <ol>
+              <ul>
                 {ingredients.map((ingredient, i) => (
                   <li key={ingredients.length / i - 3}>{ingredient.text}.</li>
                 ))}
-              </ol>
+              </ul>
             ) : null}
 
             <div
