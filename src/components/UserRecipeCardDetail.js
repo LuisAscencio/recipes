@@ -146,6 +146,14 @@ export default function UserRecipeCardDetail({ location }) {
           >
             Delete recipe
           </button>
+          <button
+            style={{ marginLeft: "10px" }}
+            onClick={handleModalShow}
+            type="button"
+            className="btn btn-danger"
+          >
+            Edit recipe
+          </button>
         </div>
       </div>
     </div>
