@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
 import firebase from "../firebase";
 import { FaHamburger } from "react-icons/fa";
 import { Modal, Button } from "react-bootstrap";
@@ -146,14 +146,38 @@ export default function UserRecipeCardDetail({ location }) {
           >
             Delete recipe
           </button>
-          <button
-            style={{ marginLeft: "10px" }}
-            onClick={handleModalShow}
-            type="button"
-            className="btn btn-danger"
+
+          <Link
+            to={{
+              pathname: `/edit/${location.state.id}`
+              // state: {
+              //   fileName,
+              //   title,
+              //   calories,
+              //   image: updatedImage,
+              //   ingredients,
+              //   website,
+              //   serves,
+              //   directions,
+              //   id
+              // }
+            }}
           >
-            Edit recipe
-          </button>
+            <div
+              className="btn-group mr-2"
+              role="group"
+              aria-label="Second group"
+            >
+              <button
+                style={{ marginLeft: "10px" }}
+                // onClick={handleModalShow}
+                type="button"
+                className="btn btn-danger"
+              >
+                Edit recipe
+              </button>
+            </div>
+          </Link>
         </div>
       </div>
     </div>

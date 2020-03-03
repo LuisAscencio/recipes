@@ -1,5 +1,5 @@
 import React from "react";
-
+import UserFormToEdit from "./components/UserFormToEdit";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import ApiRecipes from "./components/ApiRecipes";
@@ -21,6 +21,7 @@ function App() {
           <Route path="/myrecipes" exact component={UserRecipes} />
           <Route path="/recipeVault" component={ApiRecipes} />
           <Route path="/myrecipes/:id" component={UserRecipeCardDetail} />
+          <Route path="/edit/:id" component={UserFormToEdit} />
         </Switch>
       </div>
     </Router>
