@@ -41,7 +41,6 @@ const UserRecipeCard = ({
           className="card shadow"
           style={{
             width: "22em",
-           
 
             flexBasis: "15em"
           }}
@@ -87,6 +86,7 @@ const UserRecipeCard = ({
                 state: {
                   fileName,
                   title,
+                  vegan,
                   calories,
                   image: updatedImage,
                   ingredients,

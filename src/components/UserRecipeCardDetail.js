@@ -156,7 +156,9 @@ export default function UserRecipeCardDetail({ location }) {
                 calories: location.state.calories,
                 serves: location.state.serves,
                 directions: location.state.directions,
-                ingredients: location.state.ingredients
+                ingredients: location.state.ingredients,
+                vegan: location.state.vegan,
+                image: location.state.image
 
                 // image: updatedImage,
                 // ingredients,

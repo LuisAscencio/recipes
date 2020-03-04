@@ -9,9 +9,9 @@ const UserFormToEdit = ({ location }) => {
   const [recipeIngredients, setRecipeIngredients] = useState(
     location.state.ingredients.join("\n")
   );
-  const [imageLink, setImageLink] = useState("");
+  const [imageLink, setImageLink] = useState(location.state.image);
   const [serves, setServes] = useState(location.state.serves);
-  const [vegan, setVegan] = useState("No");
+  const [vegan, setVegan] = useState(location.state.vegan);
   const [calories, setCalories] = useState(location.state.calories);
   const [directions, setDirections] = useState(
     location.state.directions.join("\n")
