@@ -149,18 +149,18 @@ export default function UserRecipeCardDetail({ location }) {
 
           <Link
             to={{
-              pathname: `/edit/${location.state.id}`
-              // state: {
-              //   fileName,
-              //   title,
-              //   calories,
-              //   image: updatedImage,
-              //   ingredients,
-              //   website,
-              //   serves,
-              //   directions,
-              //   id
-              // }
+              pathname: `/edit/${location.state.id}`,
+              state: {
+                // fileName,
+                title: location.state.title
+                // calories,
+                // image: updatedImage,
+                // ingredients,
+                // website,
+                // serves,
+                // directions,
+                // id
+              }
             }}
           >
             <div

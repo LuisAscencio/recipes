@@ -3,8 +3,9 @@ import firebase from "../firebase";
 import { FaHamburger } from "react-icons/fa";
 import { Modal, Button } from "react-bootstrap";
 
-const UserFormToEdit = () => {
-  const [title, setTitle] = useState("");
+const UserFormToEdit = ({ location }) => {
+  console.log(location.state.title);
+  const [title, setTitle] = useState(location.state.title);
   const [recipeLink, setRecipeLink] = useState("");
   const [recipeIngredients, setRecipeIngredients] = useState([]);
   const [imageLink, setImageLink] = useState("");
