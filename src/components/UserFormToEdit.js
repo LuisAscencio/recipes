@@ -4,10 +4,11 @@ import { FaHamburger } from "react-icons/fa";
 import { Modal, Button } from "react-bootstrap";
 
 const UserFormToEdit = ({ location }) => {
-  console.log(location.state.title);
   const [title, setTitle] = useState(location.state.title);
   const [recipeLink, setRecipeLink] = useState("");
-  const [recipeIngredients, setRecipeIngredients] = useState([]);
+  const [recipeIngredients, setRecipeIngredients] = useState(
+    location.state.ingredients.join("\n")
+  );
   const [imageLink, setImageLink] = useState("");
   const [serves, setServes] = useState(location.state.serves);
   const [vegan, setVegan] = useState("No");
