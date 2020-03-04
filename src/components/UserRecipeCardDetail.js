@@ -152,8 +152,11 @@ export default function UserRecipeCardDetail({ location }) {
               pathname: `/edit/${location.state.id}`,
               state: {
                 // fileName,
-                title: location.state.title
-                // calories,
+                title: location.state.title,
+                calories: location.state.calories,
+                serves: location.state.serves,
+                directions: location.state.directions
+
                 // image: updatedImage,
                 // ingredients,
                 // website,

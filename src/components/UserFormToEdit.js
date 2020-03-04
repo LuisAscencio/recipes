@@ -9,10 +9,12 @@ const UserFormToEdit = ({ location }) => {
   const [recipeLink, setRecipeLink] = useState("");
   const [recipeIngredients, setRecipeIngredients] = useState([]);
   const [imageLink, setImageLink] = useState("");
-  const [serves, setServes] = useState(Number);
+  const [serves, setServes] = useState(location.state.serves);
   const [vegan, setVegan] = useState("No");
-  const [calories, setCalories] = useState("");
-  const [directions, setDirections] = useState([]);
+  const [calories, setCalories] = useState(location.state.calories);
+  const [directions, setDirections] = useState(
+    location.state.directions.join("\n")
+  );
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("Choose file");
   const [modalText, setModalText] = useState(
