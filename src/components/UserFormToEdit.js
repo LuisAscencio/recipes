@@ -5,7 +5,7 @@ import { Modal, Button } from "react-bootstrap";
 
 const UserFormToEdit = ({ location }) => {
   const [title, setTitle] = useState(location.state.title);
-  const [recipeLink, setRecipeLink] = useState("");
+  const [recipeLink, setRecipeLink] = useState(location.state.website);
   const [recipeIngredients, setRecipeIngredients] = useState(
     location.state.ingredients.join("\n")
   );
