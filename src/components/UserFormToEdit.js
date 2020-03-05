@@ -5,11 +5,11 @@ import { Modal, Button } from "react-bootstrap";
 
 const UserFormToEdit = ({ location }) => {
   const [title, setTitle] = useState(location.state.title);
-  const [recipeLink, setRecipeLink] = useState(location.state.website);
+  const [recipeLink, setRecipeLink] = useState("");
   const [recipeIngredients, setRecipeIngredients] = useState(
     location.state.ingredients.join("\n")
   );
-  const [imageLink, setImageLink] = useState(location.state.image);
+  const [imageLink, setImageLink] = useState("");
   const [serves, setServes] = useState(location.state.serves);
   const [vegan, setVegan] = useState(location.state.vegan);
   const [calories, setCalories] = useState(location.state.calories);
@@ -91,16 +91,20 @@ const UserFormToEdit = ({ location }) => {
     firebase
       .firestore()
       .collection("recipes")
-      .add({
-        title,
-        recipeLink,
-        imageLink,
-        serves: serves === 0 ? "No info" : serves,
-        vegan,
-        directions: directions.split(/\n/),
-        calories: calories ? parseInt(calories) : "No info",
-        recipeIngredients: recipeIngredients.split(/\n/)
-      })
+      .doc(`${location.state.id}`)
+      .set(
+        {
+          title,
+          recipeLink,
+          imageLink,
+          serves: serves === 0 ? "No info" : serves,
+          vegan,
+          directions: directions.split(/\n/),
+          calories: calories ? parseInt(calories) : "No info",
+          recipeIngredients: recipeIngredients.split(/\n/)
+        },
+        { merge: true }
+      )
       .then(() => {
         setTitle("");
         setImageLink("");
@@ -129,17 +133,20 @@ const UserFormToEdit = ({ location }) => {
         firebase
           .firestore()
           .collection("recipes")
-          .add({
-            fileName,
-            title,
-            recipeLink,
-            imageLink: url ? url : imageLink,
-            serves: serves === 0 ? "No Info" : serves,
-            vegan,
-            directions: directions.split(/\n/),
-            calories: calories ? parseInt(calories) : "No info",
-            recipeIngredients: recipeIngredients.split(/\n/)
-          })
+          .doc(`${location.state.id}`)
+          .set(
+            {
+              title,
+              recipeLink,
+              imageLink,
+              serves: serves === 0 ? "No info" : serves,
+              vegan,
+              directions: directions.split(/\n/),
+              calories: calories ? parseInt(calories) : "No info",
+              recipeIngredients: recipeIngredients.split(/\n/)
+            },
+            { merge: true }
+          )
           .then(handleClose2())
           .then(() => {
             setTitle("");
